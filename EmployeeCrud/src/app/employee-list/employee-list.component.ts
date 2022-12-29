@@ -20,9 +20,8 @@ export class EmployeeListComponent {
 
    onUpdate(emp:employee)
    {
-      var e = this.service.getData(emp.empNo).subscribe();
-      window.location.reload();
-      
+      this.service.onClickEdit(emp);
+
    }
    onDelete(empId:number)
    {

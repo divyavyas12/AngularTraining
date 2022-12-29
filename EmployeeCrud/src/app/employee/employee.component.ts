@@ -10,9 +10,15 @@ import { ServiceService } from '../Services/service.service';
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent {
-
-  constructor(private fb:FormBuilder,public service:ServiceService){ }
+  isEdit:boolean=false;
   obj:employee = new employee();
+  constructor(private fb:FormBuilder,public service:ServiceService){ 
+    service.editcallback$.subscribe((emp:employee)=>{
+      this.obj=emp;
+      this.isEdit=true;
+    })
+  }
+  
 
   employeeform!:FormGroup;
   // this.service.updateUser(this.user).subscribe(data1 => {
@@ -33,19 +39,27 @@ export class EmployeeComponent {
 
   onSubmit(emp:employee)
   {
-    console.log(emp);
+    if(!this.isEdit)
+    {
+      console.log(emp);
   this.service.postData(emp)
     .subscribe(response => {
         console.log(response);
         window.location.reload();
   })
+    }
+    else{
+      console.log(emp);
+  this.service.updateData(emp)
+    .subscribe(response => {
+        console.log(response);
+        window.location.reload();
+    });
+    }
+    
   }
   onReset()
   {
-      this.obj.empNo=0;
-      this.obj.name='';
-      this.obj.basic=0;
-      this.obj.deptNo=0;
-      
+     this.employeeform.reset();
   }
 }

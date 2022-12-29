@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { compileDeclareInjectableFromMetadata } from '@angular/compiler';
 import { employee } from '../Model/employee';
 
@@ -11,6 +11,8 @@ export class ServiceService {
   constructor(private http : HttpClient) { }
   url:string="http://localhost:5111/api/Employees";
   e:employee= new employee();
+  private editcallback = new Subject<employee>();
+  editcallback$= this.editcallback.asObservable();
   getAllData(): Observable<any> 
   {
     return this.http.get(`${this.url}`)
@@ -34,4 +36,9 @@ export class ServiceService {
   deleteData(empNo: number): Observable<any>{
       return this.http.delete<any>(`${this.url}/${empNo}`)
   }
+
+  onClickEdit(emp:employee){
+     this.editcallback.next(emp);
+  }
+
 }
