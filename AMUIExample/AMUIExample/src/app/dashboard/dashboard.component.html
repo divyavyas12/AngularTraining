@@ -1,0 +1,28 @@
+<mat-stepper #stepper [linear]="true">
+  <mat-step>
+    <ng-template matStepLabel>Basic Information</ng-template>
+
+    <app-basic-info></app-basic-info>
+
+    <div>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
+
+  <mat-step>
+    <app-bank-details></app-bank-details>
+    <div>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+
+    <app-contact-details></app-contact-details>
+
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+    </div>
+  </mat-step>
+</mat-stepper>
