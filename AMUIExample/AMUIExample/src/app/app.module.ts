@@ -9,9 +9,6 @@ import { MaterialModule } from './material/material.module';
 import { NgModule } from '@angular/core';
 import { RegistrationComponent } from './registration/registration.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { BasicInfoComponent } from './basic-info/basic-info.component';
-import { BankDetailsComponent } from './bank-details/bank-details.component';
-import { ContactDetailsComponent } from './contact-details/contact-details.component';
 
 @NgModule({
   declarations: [
@@ -19,9 +16,6 @@ import { ContactDetailsComponent } from './contact-details/contact-details.compo
     RegistrationComponent,
     LoginComponent,
     DashboardComponent,
-    BasicInfoComponent,
-    BankDetailsComponent,
-    ContactDetailsComponent
   ],
   imports: [
     BrowserModule,
